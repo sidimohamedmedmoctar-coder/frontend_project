@@ -1,0 +1,395 @@
+/* ── Page ────────────────────────────────────────────────────────────────────── */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a0f1e 0%, #0d1b3e 35%, #0f2460 65%, #1a0a3e 100%);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  position: relative;
+  overflow: hidden;
+  padding: 32px 24px;
+}
+
+/* ── Orbes ───────────────────────────────────────────────────────────────────── */
+
+.orb1, .orb2, .orb3 {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 520px; height: 520px;
+  top: -180px; right: -100px;
+  background: radial-gradient(circle, rgba(99,102,241,0.35) 0%, transparent 65%);
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 400px; height: 400px;
+  bottom: -140px; left: -80px;
+  background: radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 65%);
+  animation-delay: 2s;
+}
+
+.orb3 {
+  width: 280px; height: 280px;
+  top: 50%; left: 40%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 65%);
+  animation-delay: 4s;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.7; transform: scale(1.08); }
+}
+
+/* ── Carte ───────────────────────────────────────────────────────────────────── */
+
+.card {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 460px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 40px 40px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 32px 80px rgba(0,0,0,0.5),
+    0 8px 32px rgba(99,102,241,0.15);
+}
+
+/* ── Logo ────────────────────────────────────────────────────────────────────── */
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.logoBox {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.5);
+  flex-shrink: 0;
+}
+
+.logoName {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+}
+
+/* ── Titre ───────────────────────────────────────────────────────────────────── */
+
+.heading { margin-bottom: 24px; }
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 5px;
+  letter-spacing: -0.4px;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+
+/* ── Formulaire ──────────────────────────────────────────────────────────────── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.fieldIcon {
+  position: absolute;
+  left: 14px;
+  color: rgba(255,255,255,0.3);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.inputWrap:focus-within .fieldIcon {
+  color: #818cf8;
+}
+
+.input {
+  width: 100%;
+  padding: 11px 44px 11px 42px;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.input::placeholder { color: rgba(255,255,255,0.22); }
+
+.input:focus {
+  border-color: #6366f1;
+  background: rgba(99,102,241,0.08);
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.18);
+}
+
+.inputErr {
+  border-color: rgba(239,68,68,0.6) !important;
+  background: rgba(239,68,68,0.06) !important;
+}
+
+.inputErr:focus {
+  box-shadow: 0 0 0 4px rgba(239,68,68,0.15) !important;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.eyeBtn:hover {
+  color: #818cf8;
+  background: rgba(99,102,241,0.12);
+}
+
+.errMsg {
+  font-size: 0.775rem;
+  color: #fca5a5;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ── Bouton submit ────────────────────────────────────────────────────────────── */
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 20px;
+  margin-top: 4px;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #818cf8 100%);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.5), 0 1px 0 rgba(255,255,255,0.15) inset;
+  letter-spacing: 0.01em;
+  font-family: inherit;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.6), 0 1px 0 rgba(255,255,255,0.15) inset;
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(99,102,241,0.4);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Spinner ─────────────────────────────────────────────────────────────────── */
+
+.spinner {
+  width: 18px; height: 18px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Footer ──────────────────────────────────────────────────────────────────── */
+
+.footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.footerLink {
+  color: #818cf8;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footerLink:hover {
+  color: #a5b4fc;
+  text-decoration: underline;
+}
+
+/* ── Écran succès ─────────────────────────────────────────────────────────────── */
+
+.cardSuccess {
+  text-align: center;
+  max-width: 440px;
+}
+
+.successIcon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 24px rgba(34,197,94,0.4);
+}
+
+.successTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 12px;
+}
+
+.successText {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.65;
+  margin: 0 0 32px;
+}
+
+.successText strong {
+  color: rgba(255,255,255,0.9);
+}
+
+/* Étapes */
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 32px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.step span {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.stepDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+}
+
+.stepDone .stepDot {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-color: #22c55e;
+  color: #fff;
+}
+
+.stepCurrent .stepDot {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border-color: #6366f1;
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.25);
+}
+
+.stepDone span,
+.stepCurrent span {
+  color: rgba(255,255,255,0.8);
+}
+
+.stepLine {
+  flex: 1;
+  height: 1.5px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 8px;
+  margin-bottom: 24px;
+  min-width: 32px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 520px) {
+  .card { padding: 32px 22px; border-radius: 20px; }
+  .title { font-size: 1.4rem; }
+}

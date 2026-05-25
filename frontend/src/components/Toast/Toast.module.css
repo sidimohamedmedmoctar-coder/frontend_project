@@ -1,0 +1,48 @@
+.stack {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 3000;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  pointer-events: all;
+  cursor: pointer;
+  min-width: 260px;
+  max-width: 420px;
+  animation: slideIn 0.22s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(30px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.success { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+.error   { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+.info    { background: #dbeafe; color: #1d4ed8; border: 1px solid #93c5fd; }
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  flex-shrink: 0;
+}
+.closeBtn:hover { opacity: 1; }

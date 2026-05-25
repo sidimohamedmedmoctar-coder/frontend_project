@@ -1,0 +1,233 @@
+/* ── Base ─────────────────────────────────────────────────────────────────────── */
+
+.container {
+  max-width: 600px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────────── */
+
+.header {
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.4px;
+  margin: 0 0 4px;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Form card ────────────────────────────────────────────────────────────────── */
+
+.card {
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 28px 32px;
+}
+
+/* ── Alert banners ────────────────────────────────────────────────────────────── */
+
+.alertInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-left: 4px solid #3b82f6;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: #1d4ed8;
+  margin-bottom: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.alertSuccess {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-left: 4px solid #22c55e;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: #15803d;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.alertError {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #ef4444;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: #b91c1c;
+  margin-bottom: 20px;
+}
+
+/* ── Form layout ──────────────────────────────────────────────────────────────── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #374151;
+  letter-spacing: 0.01em;
+}
+.label .required { color: #ef4444; margin-left: 2px; }
+
+/* ── Inputs ───────────────────────────────────────────────────────────────────── */
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #0f172a;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  box-sizing: border-box;
+}
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+.textarea { resize: vertical; min-height: 80px; }
+.input::placeholder,
+.textarea::placeholder { color: #94a3b8; }
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+}
+.inputError { border-color: #ef4444 !important; }
+.inputError:focus { box-shadow: 0 0 0 4px rgba(239,68,68,0.1) !important; }
+
+/* ── Input with adornment ─────────────────────────────────────────────────────── */
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.inputWrapper .input { padding-right: 40px; }
+
+.inputAdornment {
+  position: absolute;
+  right: 13px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* ── Field error / hint ───────────────────────────────────────────────────────── */
+
+.fieldError {
+  font-size: 0.78rem;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fieldHint {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* ── RIB found chip ───────────────────────────────────────────────────────────── */
+
+.ribFound {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  margin-top: 2px;
+}
+
+.ribNotFound {
+  font-size: 0.78rem;
+  color: #dc2626;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Centered loader ──────────────────────────────────────────────────────────── */
+
+.centered {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+/* ── Submit button ────────────────────────────────────────────────────────────── */
+
+.btnSubmit {
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(99,102,241,0.35);
+  transition: all 0.18s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.btnSubmit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 18px rgba(99,102,241,0.45);
+}
+.btnSubmit:disabled { opacity: 0.6; cursor: not-allowed; }

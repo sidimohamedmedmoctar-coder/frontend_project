@@ -1,0 +1,246 @@
+/* ── Base ─────────────────────────────────────────────────────────────────────── */
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Loading / Error guards ───────────────────────────────────────────────────── */
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.errorWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 0;
+}
+
+.errorBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #ef4444;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.875rem;
+  color: #b91c1c;
+  font-weight: 500;
+}
+
+.btnBack {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: 9px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  transition: all 0.15s;
+  font-family: inherit;
+  width: fit-content;
+}
+.btnBack:hover { background: #f1f5f9; border-color: #94a3b8; }
+
+/* ── Action buttons (hidden on print) ─────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.btnPrint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 22px;
+  border-radius: 9px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(99,102,241,0.3);
+  transition: all 0.18s;
+  font-family: inherit;
+}
+.btnPrint:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(99,102,241,0.4);
+}
+
+/* ── Document ─────────────────────────────────────────────────────────────────── */
+
+.document {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #fff;
+  padding: 48px 52px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+/* ── Doc header ───────────────────────────────────────────────────────────────── */
+
+.docHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.bankName {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: -0.4px;
+  margin: 0 0 3px;
+}
+.bankTagline { font-size: 0.78rem; color: #94a3b8; margin: 0; }
+
+.docTitleWrap { text-align: right; }
+.docTitle  { font-size: 1rem; font-weight: 700; color: #3b82f6; margin: 0 0 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+.docDate   { font-size: 0.75rem; color: #94a3b8; margin: 0; }
+
+.headerDivider {
+  border: none;
+  border-top: 2.5px solid #3b82f6;
+  margin: 0 0 28px;
+}
+
+/* ── Client info ──────────────────────────────────────────────────────────────── */
+
+.clientSection { margin-bottom: 28px; }
+
+.sectionLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 8px;
+}
+
+.clientName  { font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 2px; }
+.clientEmail { font-size: 0.875rem; color: #64748b; margin: 0; }
+
+/* ── Account cards ────────────────────────────────────────────────────────────── */
+
+.accountsGrid {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.accountCard {
+  flex: 1 1 240px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  border-left-width: 4px;
+}
+.accountCurrent { border-left-color: #3b82f6; }
+
+.accountType  { font-size: 0.875rem; font-weight: 700; color: #0f172a; margin: 0 0 6px; }
+.accountRib   { font-size: 0.75rem; color: #64748b; font-family: 'Courier New', monospace; margin: 0 0 3px; }
+.accountId    { font-size: 0.75rem; color: #94a3b8; margin: 0 0 8px; }
+.accountBalance { font-size: 1rem; font-weight: 700; margin: 0; }
+.accountBalanceCurrent { color: #3b82f6; }
+
+/* ── Total balance ────────────────────────────────────────────────────────────── */
+
+.totalRow {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.totalLabel  { font-size: 0.82rem; color: #94a3b8; margin: 0; }
+.totalAmount { font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0; }
+
+/* ── Operations table ─────────────────────────────────────────────────────────── */
+
+.opsLabel { margin: 0 0 12px; }
+
+.tableWrapper { overflow-x: auto; border-radius: 10px; border: 1px solid #e2e8f0; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table thead tr {
+  background: linear-gradient(90deg, #1e1b4b, #312e81);
+  color: #e2e8f0;
+}
+
+.table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.table th.right { text-align: right; }
+
+.table tbody tr:nth-child(even) { background: #f8fafc; }
+.table tbody tr:hover           { background: #f0f4ff; }
+.table td { padding: 9px 14px; border-bottom: 1px solid #f1f5f9; color: #374151; }
+.table td.right { text-align: right; }
+
+.debitAmount  { color: #ef4444; font-weight: 600; }
+.creditAmount { color: #22c55e; font-weight: 600; }
+
+.emptyOps {
+  text-align: center;
+  padding: 40px 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-style: italic;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────────── */
+
+.docFooter {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.footerNote { font-size: 0.72rem; color: #94a3b8; margin: 0; }
+
+/* ── Print styles ─────────────────────────────────────────────────────────────── */
+
+@media print {
+  .actions   { display: none !important; }
+  .document  { border: none; box-shadow: none; padding: 0; border-radius: 0; }
+  .container { max-width: none; }
+}

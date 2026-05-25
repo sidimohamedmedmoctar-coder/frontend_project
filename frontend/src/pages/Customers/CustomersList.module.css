@@ -1,0 +1,335 @@
+/* ── Base ─────────────────────────────────────────────────────────────────────── */
+
+.container {
+  max-width: 1060px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.4px;
+  margin: 0;
+}
+
+/* ── Sync button ──────────────────────────────────────────────────────────────── */
+
+.btnSync {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid #f59e0b;
+  background: #fffbeb;
+  color: #92400e;
+  transition: all 0.18s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.btnSync:hover:not(:disabled) {
+  background: #fef3c7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245,158,11,0.2);
+}
+.btnSync:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ── Duplicate banner ─────────────────────────────────────────────────────────── */
+
+.duplicateBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(90deg, #fff7ed, #fffbf5);
+  border: 1px solid #fed7aa;
+  border-left: 4px solid #f97316;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  font-size: 0.875rem;
+  color: #7c2d12;
+  flex-wrap: wrap;
+}
+
+.btnClean {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid #f97316;
+  background: #fff;
+  color: #c2410c;
+  transition: all 0.18s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.btnClean:hover:not(:disabled) {
+  background: #fff7ed;
+  transform: translateY(-1px);
+}
+.btnClean:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ── Search bar ───────────────────────────────────────────────────────────────── */
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 16px 10px 42px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  outline: none;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 14px center;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  font-family: inherit;
+  color: #0f172a;
+}
+.searchInput::placeholder { color: #94a3b8; }
+.searchInput:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+}
+
+.count {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 500;
+  white-space: nowrap;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* ── States ───────────────────────────────────────────────────────────────────── */
+
+.centered {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+}
+
+.errorMsg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #b91c1c;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #ef4444;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+.emptyMsg {
+  color: #94a3b8;
+  font-style: italic;
+  padding: 32px 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ── Table wrapper ────────────────────────────────────────────────────────────── */
+
+.tableWrapper {
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+/* ── Table ────────────────────────────────────────────────────────────────────── */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table thead tr {
+  background: linear-gradient(90deg, #1e1b4b, #312e81);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.table tbody tr {
+  transition: background 0.12s;
+  border-bottom: 1px solid #f1f5f9;
+}
+.table tbody tr:last-child { border-bottom: none; }
+.table tbody tr:hover { background: #f5f7ff; }
+
+.table td {
+  padding: 13px 18px;
+  color: #374151;
+  vertical-align: middle;
+}
+
+/* ID badge */
+.table td:first-child {
+  font-weight: 700;
+  color: #6366f1;
+  font-size: 0.85rem;
+}
+
+/* ── Duplicate row ────────────────────────────────────────────────────────────── */
+
+.rowDuplicate {
+  background: #fff7ed !important;
+  border-left: 3px solid #f97316 !important;
+}
+.rowDuplicate:hover { background: #ffedd5 !important; }
+
+.duplicateBadge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: #fed7aa;
+  color: #c2410c;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+/* ── Action buttons ───────────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.btnOutline,
+.btnSecondary,
+.btnDanger,
+.btnPrimary {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  font-family: inherit;
+  border: none;
+}
+
+.btnOutline {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  color: #475569;
+}
+.btnOutline:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #1e293b;
+}
+
+.btnSecondary {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1.5px solid #bfdbfe;
+}
+.btnSecondary:hover { background: #dbeafe; }
+
+.btnPrimary {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+}
+.btnPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(99,102,241,0.4);
+}
+
+.btnDanger {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1.5px solid #fecaca;
+}
+.btnDanger:hover {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+/* ── Pagination ───────────────────────────────────────────────────────────────── */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0 4px;
+}
+
+.pageBtn {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 1rem;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+.pageBtn:hover:not(:disabled) {
+  background: #6366f1;
+  color: #fff;
+  border-color: #6366f1;
+}
+.pageBtn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.pageInfo {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+}

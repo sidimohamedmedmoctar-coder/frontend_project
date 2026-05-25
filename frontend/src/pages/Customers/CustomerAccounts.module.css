@@ -1,0 +1,190 @@
+.container {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.errorMsg {
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+/* ── Back button ────────────────────────────────────────────────────────────── */
+.backBtn {
+  align-self: flex-start;
+  padding: 7px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.backBtn:hover { background: #f1f5f9; }
+
+/* ── Customer info card ─────────────────────────────────────────────────────── */
+.customerCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.customerAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1e40af;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.customerName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.customerEmail {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.accountCount {
+  margin-left: auto;
+  text-align: center;
+}
+
+.countNum {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1e40af;
+  line-height: 1;
+}
+
+.countLabel {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Section ────────────────────────────────────────────────────────────────── */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.btnCreate {
+  padding: 9px 18px;
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.btnCreate:hover:not(:disabled) { background: #16a34a; }
+.btnCreate:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.emptyMsg {
+  color: #64748b;
+  font-style: italic;
+  padding: 12px 0;
+}
+
+/* ── Account cards grid ─────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.accountCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #e2e8f0;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.accountCard:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.cardTop {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.accountId {
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  color: #94a3b8;
+  word-break: break-all;
+}
+
+.balance {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.extra {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.detailBtn {
+  margin-top: auto;
+  padding: 9px 14px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: center;
+}
+.detailBtn:hover { background: #dbeafe; }

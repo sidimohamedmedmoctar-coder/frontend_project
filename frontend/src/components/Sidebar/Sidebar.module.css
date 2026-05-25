@@ -1,0 +1,143 @@
+/* ── Sidebar ──────────────────────────────────────────────────────────────────── */
+
+.sidebar {
+  width: 252px;
+  min-width: 252px;
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  padding-bottom: 0;
+}
+
+/* ── Section label ────────────────────────────────────────────────────────────── */
+
+.sectionLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.1em;
+  padding: 20px 20px 10px;
+  text-transform: uppercase;
+}
+
+/* ── Nav list ─────────────────────────────────────────────────────────────────── */
+
+.navList {
+  list-style: none;
+  padding: 0 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+/* ── Nav link ─────────────────────────────────────────────────────────────────── */
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+
+.link:hover {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.85);
+}
+
+.linkIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: color 0.18s;
+}
+
+.linkLabel { flex: 1; }
+
+.linkIndicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.18s;
+  flex-shrink: 0;
+}
+
+/* ── Active state ─────────────────────────────────────────────────────────────── */
+
+.active {
+  background: linear-gradient(90deg, rgba(99,102,241,0.2), rgba(99,102,241,0.06));
+  color: #a5b4fc !important;
+  font-weight: 600;
+  border: 1px solid rgba(99,102,241,0.2);
+}
+
+.active .linkIcon { color: #818cf8; }
+
+.active .linkIndicator {
+  background: #6366f1;
+  box-shadow: 0 0 6px rgba(99,102,241,0.8);
+}
+
+/* ── Bottom user card ─────────────────────────────────────────────────────────── */
+
+.bottomUser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  margin: 8px 10px 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.bottomAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bottomInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.bottomName {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bottomRole {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.35);
+  font-weight: 500;
+}

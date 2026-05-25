@@ -1,0 +1,59 @@
+# ─── Spring Boot / Maven ───────────────────────────────────────────────────────
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.snap
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# ─── Node / Frontend ──────────────────────────────────────────────────────────
+node_modules/
+dist/
+dist-ssr/
+.cache/
+
+# ─── Environment & secrets ────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.secret
+secrets/
+application-prod.properties
+application-prod.yml
+
+# ─── IntelliJ IDEA ────────────────────────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ─── VS Code ──────────────────────────────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# ─── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Misc ─────────────────────────────────────────────────────────────────────
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# ─── Bases de données locales ─────────────────────────────────────────────────
+*.mv.db
+*.trace.db
+data/

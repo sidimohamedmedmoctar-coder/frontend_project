@@ -1,0 +1,205 @@
+/* ── Base ─────────────────────────────────────────────────────────────────────── */
+
+.container {
+  max-width: 960px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────────── */
+
+.header { margin-bottom: 24px; }
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.4px;
+  margin: 0 0 4px;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Filter panel ─────────────────────────────────────────────────────────────── */
+
+.filterPanel {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+}
+
+.filterBar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filterLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.filterSelect,
+.filterInput {
+  padding: 9px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #374151;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  min-width: 120px;
+}
+.filterSelect {
+  padding-right: 32px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+}
+.filterInput[type="date"] { min-width: 140px; }
+.filterInput[type="text"] { min-width: 180px; }
+.filterSelect:focus,
+.filterInput:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+}
+
+.btnReset {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  align-self: flex-end;
+}
+.btnReset:hover {
+  border-color: #6366f1;
+  color: #4f46e5;
+  background: #eef2ff;
+}
+
+/* ── Count info ───────────────────────────────────────────────────────────────── */
+
+.countInfo {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* ── States ───────────────────────────────────────────────────────────────────── */
+
+.centered {
+  display: flex;
+  justify-content: center;
+  padding: 56px 0;
+}
+
+.errorMsg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #b91c1c;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #ef4444;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+/* ── Table ────────────────────────────────────────────────────────────────────── */
+
+.tableWrapper {
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table thead tr {
+  background: linear-gradient(90deg, #1e1b4b, #312e81);
+}
+
+.table th {
+  padding: 13px 18px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.table th:last-child { text-align: right; }
+
+.table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.12s;
+}
+.table tbody tr:last-child { border-bottom: none; }
+.table tbody tr:hover { background: #f5f7ff; }
+
+.table td {
+  padding: 13px 18px;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.dateCell  { white-space: nowrap; color: #64748b; font-size: 0.82rem; }
+.descCell  { color: #374151; max-width: 280px; }
+.emptyCell { text-align: center; color: #94a3b8; padding: 48px 0 !important; font-style: italic; font-size: 0.9rem; }
+
+/* ── Amount column ────────────────────────────────────────────────────────────── */
+
+.amountCredit { font-weight: 700; color: #16a34a; white-space: nowrap; text-align: right; }
+.amountDebit  { font-weight: 700; color: #dc2626; white-space: nowrap; text-align: right; }
+
+/* ── Status chips ─────────────────────────────────────────────────────────────── */
+
+.chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.chipCredit { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+.chipDebit  { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
