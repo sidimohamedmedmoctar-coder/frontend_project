@@ -32,7 +32,7 @@ export default function CustomerForm() {
   useEffect(() => {
     if (!id) return;
     getCustomer(Number(id))
-      .then((c) => { setName(c.name); setEmail(c.email); })
+      .then((c) => { setName(c.name ?? ''); setEmail(c.email ?? ''); })
       .catch(() => setServerError('Impossible de charger le client.'))
       .finally(() => setLoadingData(false));
   }, [id]);

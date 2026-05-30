@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -32,27 +32,35 @@ function loadBeneficiaries(username: string): Beneficiary[] {
  * Les données sont stockées dans le localStorage sous la clé
  * `bank_beneficiaries_<username>`, donc chaque client a sa propre
  * liste et un nouveau compte commence toujours vide.
+ *
+ * Stratégie de persistance (TP1 + TP5) :
+ *   - On ne persiste QUE quand c'est l'utilisateur qui a modifié la liste
+ *     (add/remove), jamais lors du chargement initial ou du changement de session.
+ *   - isUserActionRef agit comme un flag interne (useRef → pas de re-render).
  */
 export function useBeneficiaries(username: string) {
-  // TP2 — useState initialisé depuis localStorage (spécifique au user)
-  const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>(
-    () => loadBeneficiaries(username),
-  );
+  const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>([]);
 
-  // TP1 — useEffect : persiste dans localStorage à chaque modification
-  useEffect(() => {
-    if (!username) return;
-    localStorage.setItem(storageKey(username), JSON.stringify(beneficiaries));
-  }, [beneficiaries, username]);
+  // useRef — vrai seulement quand la modification vient d'une action utilisateur
+  // (pas du chargement initial). Empêche d'écraser localStorage lors de la
+  // transition '' → 'alice' (TP5 — flag interne sans re-render)
+  const isUserActionRef = useRef(false);
 
-  // Recharge si l'utilisateur change (changement de session)
+  // TP1 — Recharge les bénéficiaires quand l'utilisateur change
   useEffect(() => {
+    isUserActionRef.current = false;               // reset : prochain write = chargement
     setBeneficiaries(loadBeneficiaries(username));
   }, [username]);
 
+  // TP1 — Persiste dans localStorage uniquement après une action utilisateur
+  useEffect(() => {
+    if (!username || !isUserActionRef.current) return;
+    localStorage.setItem(storageKey(username), JSON.stringify(beneficiaries));
+  }, [beneficiaries, username]);
+
   /** Ajouter un bénéficiaire (useCallback — TP5) */
   const addBeneficiary = useCallback((b: Omit<Beneficiary, 'id'>): boolean => {
-    // Évite les doublons de RIB
+    isUserActionRef.current = true;    // marque : cette mise à jour doit être persistée
     setBeneficiaries((prev) => {
       if (prev.some((x) => x.rib === b.rib)) return prev;
       return [...prev, { ...b, id: Date.now() }];
@@ -62,6 +70,7 @@ export function useBeneficiaries(username: string) {
 
   /** Supprimer un bénéficiaire (useCallback — TP5) */
   const removeBeneficiary = useCallback((id: number) => {
+    isUserActionRef.current = true;    // marque : cette mise à jour doit être persistée
     setBeneficiaries((prev) => prev.filter((b) => b.id !== id));
   }, []);
 

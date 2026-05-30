@@ -237,7 +237,7 @@ export default function AdminOperations() {
               </thead>
               <tbody>
                 {pageData.map((op) => (
-                  <tr key={`${op.accountId}-${op.id}`}>
+                  <tr key={String(op.id)}>
                     <td className={styles.dateCell}>{formatDate(op.operationDate)}</td>
                     <td className={styles.clientCell}>{op.customerName}</td>
                     <td>

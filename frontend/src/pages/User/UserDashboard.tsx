@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import React from 'react';
@@ -63,11 +63,19 @@ const AccountCard = React.memo(function AccountCard({
   onViewHistory: () => void;
 }) {
   const [copied, setCopied] = useState(false);
+  // useRef — stocke l'ID du timer pour pouvoir l'annuler si le composant est
+  // démonté avant les 2 secondes (TP1 — cleanup useEffect / useRef)
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current);
+  }, []);
 
   function handleCopy() {
     navigator.clipboard.writeText(account.rib).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setCopied(false), 2000);
     });
   }
 

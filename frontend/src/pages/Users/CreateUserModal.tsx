@@ -85,8 +85,11 @@ export default function CreateUserModal({ onClose, onCreated }: Props) {
       const customer = await saveCustomer({ name: name.trim(), email: email.trim() });
 
       // 5. Créer le compte courant avec le solde initial + découvert configuré
+      if (!customer.id) {
+        throw new Error('Profil bancaire créé sans identifiant — contactez l\'administrateur.');
+      }
       const cfg = loadSystemConfig();
-      await createCurrentAccount({ customerId: customer.id!, initialBalance: parseFloat(initialBalance), overDraft: cfg.overdraftLimit });
+      await createCurrentAccount({ customerId: customer.id, initialBalance: parseFloat(initialBalance), overDraft: cfg.overdraftLimit });
 
       logAudit({
         level:   'INFO',
@@ -97,7 +100,15 @@ export default function CreateUserModal({ onClose, onCreated }: Props) {
       onCreated();
       onClose();
     } catch (err: unknown) {
-      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message;
+      // Type guard correct — gère les corps JSON { message } ET les corps texte plain
+      let msg: string | undefined;
+      if (typeof err === 'object' && err !== null && 'response' in err) {
+        const data = (err as { response?: { data?: unknown } }).response?.data;
+        if (typeof data === 'string') msg = data;
+        else if (typeof data === 'object' && data !== null && 'message' in data) {
+          msg = (data as { message?: string }).message;
+        }
+      }
       setServerError(msg ?? "Erreur lors de la création. Le nom d'utilisateur ou l'email existe peut-être déjà.");
     } finally {
       setLoading(false);

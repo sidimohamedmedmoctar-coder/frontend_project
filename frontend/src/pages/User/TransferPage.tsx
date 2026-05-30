@@ -52,6 +52,14 @@ export default function TransferPage() {
     amount:         '',
     description:    '',
   });
+
+  // Sync : si l'URL change (navigation vers /transfer?rib=XXX depuis Bénéficiaires),
+  // on met à jour ribDestination même si le composant reste monté (TP1 — useEffect)
+  useEffect(() => {
+    if (ribFromUrl) {
+      setValues((prev) => ({ ...prev, ribDestination: ribFromUrl }));
+    }
+  }, [ribFromUrl]);
   const [errors,       setErrors]       = useState<FormErrors>({});
   const [submitting,   setSubmitting]   = useState(false);
   const [success,      setSuccess]      = useState(false);
@@ -161,8 +169,7 @@ export default function TransferPage() {
     } finally {
       setSubmitting(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values, ribAccount]);
+  }, [values, ribAccount, username]);
 
   function accountLabel(a: BankAccount): string {
     return `Compte Courant — ${formatCurrency(a.balance)}${a.rib ? ' — RIB : ' + a.rib : ''}`;

@@ -1,7 +1,9 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useLayoutEffect,
+  useMemo,
   useReducer,
   type ReactNode,
 } from 'react';
@@ -66,7 +68,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  async function login(username: string, password: string): Promise<AuthUser> {
+  // useCallback — fonctions stables pour éviter de recréer l'objet value (TP5)
+  const login = useCallback(async (username: string, password: string): Promise<AuthUser> => {
     const token = await authApi.login(username, password);
     const next = buildUser(token);
     if (!next) throw new Error('Token invalide reçu du serveur');
@@ -79,9 +82,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       details: `Connexion réussie — rôles : ${next.roles.join(', ')}`,
     });
     return next;
-  }
+  }, []);
 
-  function logout(): void {
+  const logout = useCallback((): void => {
     if (state.user) {
       logAudit({
         level:   'INFO',
@@ -92,22 +95,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     sessionStorage.removeItem(TOKEN_KEY);
     dispatch({ type: 'LOGOUT' });
-  }
+  }, [state.user]);
 
-  function hasRole(role: string): boolean {
+  const hasRole = useCallback((role: string): boolean => {
     return state.user?.roles.includes(role) ?? false;
-  }
+  }, [state.user]);
+
+  // useMemo — objet value mémoïsé : les consommateurs ne re-rendent que si
+  // user ou isAuthenticated changent réellement (TP5 — optimisation Context)
+  const value = useMemo(
+    () => ({
+      user:            state.user,
+      isAuthenticated: state.isAuthenticated,
+      hasRole,
+      login,
+      logout,
+    }),
+    [state.user, state.isAuthenticated, hasRole, login, logout],
+  );
 
   return (
-    <AuthContext.Provider
-      value={{
-        user: state.user,
-        isAuthenticated: state.isAuthenticated,
-        hasRole,
-        login,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

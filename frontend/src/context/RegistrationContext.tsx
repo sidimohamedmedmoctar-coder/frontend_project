@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import type { ReactNode } from 'react';
 import { createUser } from '@/api/users.api';
 import { saveCustomer } from '@/api/customers.api';
@@ -107,43 +107,57 @@ export function RegistrationProvider({ children }: { children: ReactNode }) {
     [],
   );
 
+  // useRef — miroir du state pour éviter une closure périmée dans approveRegistration (TP5)
+  const registrationsRef = useRef(registrations);
+  useEffect(() => { registrationsRef.current = registrations; }, [registrations]);
+
   /**
    * Admin approuve la demande :
    *   1. POST /admin/users        → crée le compte de connexion (AppUser)
    *   2. POST /customers          → crée le profil bancaire (Customer)
    *   3. POST /accounts/current   → ouvre un compte courant (solde 0, découvert 1 000)
-   *                                  ↑ le client voit ses comptes dès la 1ère connexion
+   *
+   * Chaque étape est dans un try/catch : si l'une échoue, on lève une erreur
+   * et le statut reste EN_ATTENTE (pas de données orphelines en base).
    */
   const approveRegistration = useCallback(async (id: number) => {
-    const reg = registrations.find((r) => r.id === id);
+    // Lecture depuis le ref → toujours la version la plus récente, même si
+    // un autre onglet a mis à jour registrations entre deux renders
+    const reg = registrationsRef.current.find((r) => r.id === id);
     if (!reg) return;
 
-    // Étape 1 — compte de connexion
-    await createUser({
-      username: reg.username,
-      email:    reg.email,
-      password: reg.password,
-    });
-
-    // Étape 2 — profil bancaire (apparaît dans GET /customers)
-    const newCustomer = await saveCustomer({
-      name:  reg.fullName,
-      email: reg.email,
-    });
-
-    // Étape 3 — compte courant par défaut (solde initial 0 MAD)
-    if (newCustomer?.id) {
-      await createCurrentAccount({
-        customerId:     newCustomer.id,
-        initialBalance: 0,
-        overDraft:      1000,
+    try {
+      // Étape 1 — compte de connexion
+      await createUser({
+        username: reg.username,
+        email:    reg.email,
+        password: reg.password,
       });
-    }
 
-    setRegistrations((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status: 'APPROUVÉE' } : r)),
-    );
-  }, [registrations]);
+      // Étape 2 — profil bancaire (apparaît dans GET /customers)
+      const newCustomer = await saveCustomer({
+        name:  reg.fullName,
+        email: reg.email,
+      });
+
+      // Étape 3 — compte courant par défaut (solde initial 0 MAD)
+      if (newCustomer?.id) {
+        await createCurrentAccount({
+          customerId:     newCustomer.id,
+          initialBalance: 0,
+          overDraft:      1000,
+        });
+      }
+
+      // Toutes les étapes ont réussi → mise à jour du statut
+      setRegistrations((prev) =>
+        prev.map((r) => (r.id === id ? { ...r, status: 'APPROUVÉE' } : r)),
+      );
+    } catch {
+      // Si une étape échoue, le statut reste EN_ATTENTE (pas de rollback partiel)
+      throw new Error("Approbation échouée — vérifiez la connexion et réessayez.");
+    }
+  }, []);
 
   /** Admin rejette la demande */
   const rejectRegistration = useCallback((id: number) => {
@@ -152,12 +166,16 @@ export function RegistrationProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
-  const value: RegistrationContextValue = {
-    pendingRegistrations: registrations,
-    addRegistration,
-    approveRegistration,
-    rejectRegistration,
-  };
+  // useMemo — évite de recréer l'objet value à chaque render (TP5)
+  const value = useMemo(
+    (): RegistrationContextValue => ({
+      pendingRegistrations: registrations,
+      addRegistration,
+      approveRegistration,
+      rejectRegistration,
+    }),
+    [registrations, addRegistration, approveRegistration, rejectRegistration],
+  );
 
   return (
     <RegistrationContext.Provider value={value}>
