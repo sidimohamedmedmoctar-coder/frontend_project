@@ -46,6 +46,11 @@ public class UserAccountController {
                                             @RequestBody ChangePasswordDTO dto) {
         AppUser user = appUserRepository.findByUsername(authentication.getName());
 
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", "Utilisateur introuvable."));
+        }
+
         if (!passwordEncoder.matches(dto.oldPassword(), user.getPassword())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("error", "Ancien mot de passe incorrect."));

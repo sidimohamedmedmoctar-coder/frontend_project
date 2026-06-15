@@ -1,5 +1,6 @@
 package com.banque.digital_banking.dtos;
 
+import com.banque.digital_banking.enums.AccountStatus;
 import lombok.Data;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 public class AccountHistoryDTO {
     private String accountId;
     private double balance;
+    private AccountStatus status;
     private int currentPage;
     private int totalPages;
     private int pageSize;

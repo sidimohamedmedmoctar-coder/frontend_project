@@ -317,10 +317,10 @@ export default function AdminApprovals() {
                 </tr>
               </thead>
               <tbody>
-                {pendingRegistrations.length === 0 ? (
+                {pendingRegistrations.filter((r) => r.status === 'EN_ATTENTE').length === 0 ? (
                   <tr><td colSpan={6} className={styles.emptyCell}>Aucune inscription en attente.</td></tr>
                 ) : (
-                  pendingRegistrations.map((reg) => (
+                  pendingRegistrations.filter((r) => r.status === 'EN_ATTENTE').map((reg) => (
                     <tr key={reg.id}>
                       <td className={styles.dateCell}>{formatDate(reg.date)}</td>
                       <td className={styles.clientName}>{reg.fullName}</td>

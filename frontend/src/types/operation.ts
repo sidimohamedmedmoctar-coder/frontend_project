@@ -11,6 +11,7 @@ export interface AccountOperation {
 export interface AccountHistory {
   accountId: string;
   balance: number;
+  status?: 'CREATED' | 'ACTIVATED' | 'SUSPENDED';
   currentPage: number;
   totalPages: number;
   pageSize: number;

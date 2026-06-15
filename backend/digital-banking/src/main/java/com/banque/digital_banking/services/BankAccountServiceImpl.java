@@ -62,10 +62,16 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
+    public CustomerDTO updateCustomer(CustomerDTO customerDTO) throws CustomerNotFoundException {
         log.info("Updating customer : {}", customerDTO.getName());
-        Customer customer = mapper.fromCustomerDTO(customerDTO);
-        Customer saved = customerRepository.save(customer);
+        // Charger l'entité existante pour préserver bankAccounts (orphanRemoval=true)
+        // — évite la suppression en cascade des comptes bancaires du client
+        Customer existing = customerRepository.findById(customerDTO.getId())
+                .orElseThrow(() -> new CustomerNotFoundException(
+                        "Customer not found with id : " + customerDTO.getId()));
+        existing.setName(customerDTO.getName());
+        existing.setEmail(customerDTO.getEmail());
+        Customer saved = customerRepository.save(existing);
         return mapper.fromCustomer(saved);
     }
 
@@ -247,6 +253,7 @@ public class BankAccountServiceImpl implements BankAccountService {
         AccountHistoryDTO dto = new AccountHistoryDTO();
         dto.setAccountId(accountId);
         dto.setBalance(account.getBalance());
+        dto.setStatus(account.getStatus());
         dto.setCurrentPage(page);
         dto.setPageSize(size);
         dto.setTotalPages(accountOperations.getTotalPages());

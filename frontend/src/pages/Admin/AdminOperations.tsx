@@ -58,7 +58,7 @@ export default function AdminOperations() {
             return {
               ...op,
               customerName: customer?.name ?? '—',
-              accountType:  'Courant',
+              accountType:  acc?.type === 'SavingAccount' ? 'Épargne' : 'Courant',
             };
           })
           .sort((a, b) => new Date(b.operationDate).getTime() - new Date(a.operationDate).getTime());

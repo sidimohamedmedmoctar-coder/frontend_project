@@ -12,7 +12,7 @@ import { formatCurrency } from '@/utils/formatters';
 import styles from './CustomerAccounts.module.css';
 
 function accountTypeLabel(type: string) {
-  return type === 'CurrentAccount' ? 'Courant' : 'Courant';
+  return type === 'CurrentAccount' ? 'Courant' : 'Épargne';
 }
 
 function accountTypeVariant(_type: string): 'info' {

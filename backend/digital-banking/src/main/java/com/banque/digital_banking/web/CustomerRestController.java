@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/customers")
-@CrossOrigin("*")
 @AllArgsConstructor
 @Slf4j
 public class CustomerRestController {

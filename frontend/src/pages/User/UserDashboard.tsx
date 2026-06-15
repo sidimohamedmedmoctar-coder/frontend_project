@@ -332,7 +332,7 @@ export default function UserDashboard() {
               <button
                 type="button"
                 className={`${styles.actionBtn} ${styles.actionBtnPrimary}`}
-                disabled={accounts.length === 0}
+                disabled={accounts.filter((a) => a.status === 'ACTIVÉ').length === 0}
                 onClick={() => navigate('/user/transfer')}
               >
                 <span>💸</span> Nouveau virement

@@ -258,7 +258,11 @@ export default function AccountDetails() {
         {history && (
           <div className={styles.infoRow}>
             <span className={styles.infoLabel}>Statut</span>
-            <Badge variant={statusVariant('ACTIVATED')}>ACTIVÉ</Badge>
+            <Badge variant={statusVariant(history.status ?? 'ACTIVATED')}>
+              {history.status === 'SUSPENDED' ? 'SUSPENDU'
+               : history.status === 'CREATED'  ? 'CRÉÉ'
+               : 'ACTIVÉ'}
+            </Badge>
           </div>
         )}
       </div>

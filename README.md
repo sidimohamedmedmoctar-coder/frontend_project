@@ -15,10 +15,11 @@ Projet de gestion bancaire — Backend Spring Boot + Frontend React.
 
 ## Identifiants par défaut
 
-| Utilisateur | Mot de passe | Rôle  |
-|-------------|-------------|-------|
-| admin       | 12345       | ADMIN |
-| user1       | 12345       | USER  |
+| Utilisateur | Mot de passe | Rôle      |
+|-------------|-------------|------------|
+| superadmin  | 12345       | SuperAdmin |
+| admin       | -           | USER       |
+| user        | -           | USER       |
 
 ## Stack technique
 

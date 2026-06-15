@@ -7,6 +7,7 @@ import {
   saveCustomer,
 } from '@/api/customers.api';
 import { getUsers, deleteUser } from '@/api/users.api';
+import { purgeUserLocalStorage } from '@/hooks/useRequests';
 import type { Customer } from '@/types';
 import Spinner from '@/components/Spinner/Spinner';
 import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
@@ -120,6 +121,10 @@ export default function CustomersList() {
           );
           if (appUser?.id) {
             await deleteUser(appUser.id);
+          }
+          // Purger les données localStorage liées à ce client
+          if (appUser?.username) {
+            purgeUserLocalStorage(appUser.username);
           }
         } catch {
           // Silencieux — si le AppUser n'existe pas, ce n'est pas bloquant
