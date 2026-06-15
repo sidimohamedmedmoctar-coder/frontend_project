@@ -15,9 +15,7 @@ dist-ssr/
 .cache/
 
 # ─── Environment & secrets ────────────────────────────────────────────────────
-.env
-.env.local
-.env.*.local
+# .env et .env.local inclus volontairement pour faciliter la collaboration
 *.secret
 secrets/
 application-prod.properties

@@ -14,12 +14,9 @@ node_modules
 dist
 dist-ssr
 
-# Local env files — contain secrets, never commit
-.env.local
-.env.*.local
-
-# Vite cache
+# Vite cache (on garde .env.local dans git pour faciliter la collaboration)
 *.local
+!.env.local
 
 # Editor directories and files
 .vscode/*

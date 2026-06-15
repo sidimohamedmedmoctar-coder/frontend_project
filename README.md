@@ -18,7 +18,7 @@ Projet de gestion bancaire — Backend Spring Boot + Frontend React.
 | Utilisateur | Mot de passe | Rôle      |
 |-------------|-------------|------------|
 | superadmin  | 12345       | SuperAdmin |
-| admin       | -           | USER       |
+| admin       | -           | admin       |
 | user        | -           | USER       |
 
 ## Stack technique

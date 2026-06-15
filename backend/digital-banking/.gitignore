@@ -1,8 +1,7 @@
 HELP.md
 target/
 
-### Secrets — ne jamais commiter ###
-.env
+### (le fichier .env est inclus volontairement pour faciliter la collaboration) ###
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
