@@ -119,17 +119,23 @@ export default function CustomerAccounts() {
         </div>
       )}
 
-      {/* Header + bouton créer */}
+      {/* Header + bouton créer (une seule fois par client) */}
       <div className={styles.sectionHeader}>
         <h2 className={styles.sectionTitle}>Comptes bancaires</h2>
-        <button
-          type="button"
-          className={styles.btnCreate}
-          onClick={() => setConfirmOpen(true)}
-          disabled={creating}
-        >
-          {creating ? '⏳ Création…' : '+ Ouvrir un compte courant'}
-        </button>
+        {accounts.length === 0 ? (
+          <button
+            type="button"
+            className={styles.btnCreate}
+            onClick={() => setConfirmOpen(true)}
+            disabled={creating}
+          >
+            {creating ? '⏳ Création…' : '+ Ouvrir un compte courant'}
+          </button>
+        ) : (
+          <span className={styles.accountLimitNote}>
+            ✅ Compte déjà ouvert
+          </span>
+        )}
       </div>
 
       {accounts.length === 0 && (
