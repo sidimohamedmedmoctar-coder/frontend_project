@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { changePassword } from '@/api/users.api';
 import Spinner from '@/components/Spinner/Spinner';
 import styles from './UserProfile.module.css';
 
@@ -70,12 +71,19 @@ export default function UserProfile() {
     const errs = validatePwd(pwdValues);
     if (Object.keys(errs).length > 0) { setPwdErrors(errs); return; }
     setSubmitting(true);
+    setServerErr('');
     try {
-      await new Promise((res) => setTimeout(res, 600));
+      await changePassword({ oldPassword: pwdValues.current, newPassword: pwdValues.next });
       setPwdSuccess(true);
       setPwdValues(EMPTY_PWD);
-    } catch {
-      setServerErr('Mot de passe actuel incorrect ou erreur serveur.');
+    } catch (err: unknown) {
+      // Gestion fine des erreurs serveur (400 = ancien mdp incorrect, autres = erreur générale)
+      const status = (err as { response?: { status?: number } })?.response?.status;
+      if (status === 400 || status === 401) {
+        setPwdErrors((prev) => ({ ...prev, current: 'Mot de passe actuel incorrect.' }));
+      } else {
+        setServerErr('Erreur serveur. Réessayez dans un instant.');
+      }
     } finally {
       setSubmitting(false);
     }
