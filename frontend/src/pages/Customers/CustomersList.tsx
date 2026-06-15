@@ -300,9 +300,8 @@ export default function CustomersList() {
                       )}
                     </td>
                     <td className={styles.actions}>
-                      <button className={styles.btnOutline}   onClick={() => navigate(`/admin/customers/${c.id}/accounts`)} type="button">Comptes</button>
-                      <button className={styles.btnSecondary} onClick={() => navigate(`/admin/customers/${c.id}/edit`)}     type="button">Modifier</button>
-                      <button className={styles.btnDanger}    onClick={() => setCustomerToDelete(c.id!)}                    type="button">Supprimer</button>
+                      <button className={styles.btnOutline} onClick={() => navigate(`/admin/customers/${c.id}/accounts`)} type="button">Comptes</button>
+                      <button className={styles.btnDanger}  onClick={() => setCustomerToDelete(c.id!)}                    type="button">Supprimer</button>
                     </td>
                   </tr>
                 ))}

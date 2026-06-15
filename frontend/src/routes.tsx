@@ -81,7 +81,6 @@ export default function AppRoutes() {
         <Route path="/admin/dashboard"                      element={<Dashboard />} />
         <Route path="/admin/customers"                      element={<CustomersList />} />
         <Route path="/admin/customers/new"                  element={<CustomerForm />} />
-        <Route path="/admin/customers/:id/edit"             element={<CustomerForm />} />
         <Route path="/admin/customers/:id/accounts"         element={<CustomerAccounts />} />
         <Route path="/admin/accounts"                       element={<AccountSearch />} />
         <Route path="/admin/accounts/:id"                   element={<AccountDetails />} />
